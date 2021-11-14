@@ -6,6 +6,6 @@ Well here is a small project that generates random text based on a given text (f
 The algorithm used for the text generation is a 1 word history Markov Chain algorithm.
 Here is an example.
 ![alt text](Images/example.png)
-Keep in mind, the longer the text provided the more gramatically correct sentences it creates.
+Keep in mind, the longer the text provided the more gramatically correct sentences it creates. <br />
 If you want to test go to <br />
 https://soucupb.github.io/Markov-Chain-Text-Generator/
