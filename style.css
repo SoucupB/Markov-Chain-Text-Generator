@@ -23,6 +23,10 @@ body .par {
   background-color: gray;
 }
 
+.diff {
+  margin: 10px;
+}
+
 .ttl {
   display: table;
 }
