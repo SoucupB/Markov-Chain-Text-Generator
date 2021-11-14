@@ -1,0 +1,49 @@
+body .par {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.padd {
+  margin-bottom: 20px;
+}
+
+.bte {
+  width: 150px;
+  height: 40px;
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+  font-size: large;
+  border-radius: 10px;
+}
+
+.bte:hover {
+  background-color: gray;
+}
+
+.ttl {
+  display: table;
+}
+
+textarea {
+  width: 480px;
+  height: 650px;
+  resize: none;
+}
+
+.txtpar-exp {
+  margin-top: 10px;
+  width: 350px;
+}
+
+.txtpar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.sps {
+  width: 30px;
+}

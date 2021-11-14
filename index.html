@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src = 'MarkovChain.js' defer></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="par padd">
+      <h1 class="ttl">
+        Markov Chain Text Creator
+      </h1>
+      <button class="bte" onclick="process()">
+        Generate
+      </button>
+      <div class='txtpar-exp'>
+        A markov chain text generator. This generator works by making relations between words that are in adjacement positions.
+        It tries to look for what word should come up after the currently generated word based on a chance distribution.
+      </div>
+      <div id='loading'></div>
+    </div>
+    <div class="txtpar">
+      <div>
+        <div>Input</div>
+        <textarea id='inp'></textarea>
+      </div>
+      <div class='sps'></div>
+      <div>
+        <div>Output</div>
+        <textarea id='out'></textarea>
+      </div>
+    </div>
+  </body>
+</html>
