@@ -113,6 +113,39 @@ function getNextWord(childsMap) {
   return arrayKeys[0];
 }
 
+async function createSubsequenceMap(text, counter) {
+  let mapWithNextElements = {};
+  if(text.length <= counter) {
+    return text;
+  }
+  for(let i = 0; i < text.length - counter; i++) {
+    let substrValue = text.substr(i, counter);
+    if(!(substrValue in mapWithNextElements)) {
+      mapWithNextElements[substrValue] = {};
+    }
+    if(!(text[i + counter] in mapWithNextElements[substrValue])) {
+      mapWithNextElements[substrValue][text[i + counter]] = 0;
+    }
+    mapWithNextElements[substrValue][text[i + counter]]++;
+  }
+  let response = {};
+  for(const [key, value] of Object.entries(mapWithNextElements)) {
+    response[key] = createRelativeChange(value);
+  }
+  let firstChars = text.substr(0, counter);
+  let currentCounter = 0;
+  let maxCharacters = 10000;
+  while(currentCounter < maxCharacters) {
+    let newChar = getNextWord(response[firstChars.substr(currentCounter, counter)]);
+    if(!newChar) {
+      return firstChars;
+    }
+    firstChars += newChar;
+    currentCounter++;
+  }
+  return firstChars;
+}
+
 function finish(response) {
   document.getElementById('out').value = response;
   loadingRelease();
@@ -128,6 +161,11 @@ function loadingRelease() {
 
 function process() {
   loadingAquire();
-  markovChain(document.getElementById('inp').value, document.getElementById('dificulty').value).then(finish);
+  if(document.getElementById('by').value == 'subsequance') {
+    createSubsequenceMap(document.getElementById('inp').value, 6).then(finish);
+  }
+  else {
+    markovChain(document.getElementById('inp').value, document.getElementById('dificulty').value).then(finish);
+  }
 }
 
