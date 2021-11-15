@@ -19,20 +19,34 @@
         recomended to use the higher difficulties on long texts so the probability pool will be bigger.
       </div>
       <div id='loading'></div>
-      <div class='diff'>
-        <h2>By!</h2>
-        <select id="by">
-          <option value=subsequance>Subsequance!</option>
-          <option value=words>Words!</option>
-        </select>
+      <div class = 'drpdwn' id = drp>
+        <div class='diff'>
+          <h2>By!</h2>
+          <select id="by" onchange='changeOption()'>
+            <option value=subsequance>Subsequance!</option>
+            <option value=words>Words!</option>
+          </select>
+        </div>
+        <div class='diff'>
+          <h2>Dificulty!</h2>
+          <select id="dificulty">
+            <option value=1>Random!</option>
+            <option value=2>Relatable!</option>
+            <option value=3>Close Enough!</option>
+          </select>
+        </div>
       </div>
-      <div class='diff'>
-        <h2>Dificulty!</h2>
-        <select id="dificulty">
-          <option value=1>Random!</option>
-          <option value=2>Relatable!</option>
-          <option value=3>Close Enough!</option>
-        </select>
+      <div class="inp-pair" id='input-zone'>
+        <div>
+          <div class="inp-pair">
+            <label>Character subsequence number</label>
+            <input value = 5 id='sub-val'>
+          </div>
+          <div class='inp-pair'>
+            <label>Max number of character generated</label>
+            <input value = 10000 id='cnt'>
+          </div>
+        </div>
       </div>
     </div>
     <div class="txtpar">

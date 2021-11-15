@@ -9,6 +9,15 @@ body .par {
   margin-bottom: 20px;
 }
 
+.drpdwn {
+  display: flex;
+}
+
+.inp-pair { 
+  display: flex;
+  flex-direction: column;
+}
+
 .bte {
   width: 150px;
   height: 40px;

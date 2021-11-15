@@ -18,6 +18,12 @@ async function markovChain(text, wordsHistoryCount = 1) {
   return markovText;
 }
 
+function createElementFromHTML(htmlString) {
+  var div = document.createElement('div');
+  div.innerHTML = htmlString.trim();
+  return div.firstChild; 
+}
+
 // Go through each child of a word and its counting then transform that numbers in percents between 0 and 1.
 function createRelativeChange(childs) {
   let sum = 0;
@@ -113,7 +119,7 @@ function getNextWord(childsMap) {
   return arrayKeys[0];
 }
 
-async function createSubsequenceMap(text, counter) {
+async function createSubsequenceMap(text, counter = 5, maxChars = 10000) {
   let mapWithNextElements = {};
   if(text.length <= counter) {
     return text;
@@ -134,7 +140,7 @@ async function createSubsequenceMap(text, counter) {
   }
   let firstChars = text.substr(0, counter);
   let currentCounter = 0;
-  let maxCharacters = 10000;
+  let maxCharacters = maxChars;
   while(currentCounter < maxCharacters) {
     let newChar = getNextWord(response[firstChars.substr(currentCounter, counter)]);
     if(!newChar) {
@@ -159,10 +165,36 @@ function loadingRelease() {
   document.getElementById('loading').innerHTML = "";
 }
 
+function removeDropDowns() {
+  document.getElementById('input-zone').innerHTML = '';
+}
+
+function changeOption() {
+  const selectedValue = document.getElementById('by').value;
+  removeDropDowns();
+  if(selectedValue === 'subsequance') {
+    const parentDOM = document.getElementById('input-zone')
+    parentDOM.appendChild(createElementFromHTML(`
+      <div>
+        <div class="inp-pair">
+          <label>Character subsequence number</label>
+          <input value = 5 id='sub-val'>
+        </div>
+        <div class='inp-pair'>
+          <label>Max number of character generated</label>
+          <input value = 10000 id='cnt'>
+        </div>
+      </div>
+    `));
+  }
+}
+
 function process() {
   loadingAquire();
   if(document.getElementById('by').value == 'subsequance') {
-    createSubsequenceMap(document.getElementById('inp').value, 6).then(finish);
+    createSubsequenceMap(document.getElementById('inp').value, 
+                         parseInt(document.getElementById('sub-val').value), 
+                         parseInt(document.getElementById('cnt').value)).then(finish);
   }
   else {
     markovChain(document.getElementById('inp').value, document.getElementById('dificulty').value).then(finish);
