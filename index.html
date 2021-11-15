@@ -15,17 +15,32 @@
       <div class='txtpar-exp'>
         A markov chain text generator. This generator works by making relations between words that are in adjacement positions.
         It tries to look for what word should come up after the currently generated word based on a chance distribution. The dificulty section is
-        how close the rewriting will be. The higher the dificulty the more coherent and close the output text will be to the input. It is 
+        how close the rewriting will be. The higher the dificulty the more coherent and close the output text will be to the input. It is
         recomended to use the higher difficulties on long texts so the probability pool will be bigger.
       </div>
       <div id='loading'></div>
-      <div class='diff'>
-        <h2>Dificulty!</h2>
-        <select id="dificulty">
-          <option value=1>Random!</option>
-          <option value=2>Relatable!</option>
-          <option value=3>Close Enough!</option>
-        </select>
+      <div class = 'drpdwn' id = drp>
+        <div class='diff'>
+          <h2>By!</h2>
+          <select id="by" onchange='changeOption()'>
+            <option value=subsequance>Subsequance!</option>
+            <option value=words>Words!</option>
+          </select>
+        </div>
+        <div id = diff class='diff'>
+        </div>
+      </div>
+      <div class="inp-pair" id='input-zone'>
+        <div>
+          <div class="inp-pair">
+            <label>Character subsequence number</label>
+            <input value = 5 id='sub-val'>
+          </div>
+          <div class='inp-pair'>
+            <label>Max number of character generated</label>
+            <input value = 10000 id='cnt'>
+          </div>
+        </div>
       </div>
     </div>
     <div class="txtpar">
