@@ -21,7 +21,7 @@ async function markovChain(text, wordsHistoryCount = 1) {
 function createElementFromHTML(htmlString) {
   var div = document.createElement('div');
   div.innerHTML = htmlString.trim();
-  return div.firstChild; 
+  return div.firstChild;
 }
 
 // Go through each child of a word and its counting then transform that numbers in percents between 0 and 1.
@@ -79,7 +79,6 @@ function createWordsDependency(words, wordsHistoryCount) {
     }
   }
   let responseWords = [words[0]];
-  let lastWord = words[0];
   for(let i = 0; i < words.length - 1; i++) {
     let nextWord = null;
     for(let t = wordsHistoryCount; t >= 1; t--) {
@@ -119,6 +118,7 @@ function getNextWord(childsMap) {
   return arrayKeys[0];
 }
 
+// go throug each subsequance from the start to finish and try to predict the next character
 async function createSubsequenceMap(text, counter = 5, maxChars = 10000) {
   let mapWithNextElements = {};
   if(text.length <= counter) {
@@ -167,6 +167,7 @@ function loadingRelease() {
 
 function removeDropDowns() {
   document.getElementById('input-zone').innerHTML = '';
+  document.getElementById('diff').innerHTML = '';
 }
 
 function changeOption() {
@@ -187,13 +188,26 @@ function changeOption() {
       </div>
     `));
   }
+  if(selectedValue === 'words') {
+    const parentDOM = document.getElementById('diff')
+    parentDOM.appendChild(createElementFromHTML(`
+      <div>
+        <h2>Dificulty!</h2>
+        <select id="dificulty">
+          <option value=1>Random!</option>
+          <option value=2>Relatable!</option>
+          <option value=3>Close Enough!</option>
+        </select>
+      </div>
+    `));
+  }
 }
 
 function process() {
   loadingAquire();
   if(document.getElementById('by').value == 'subsequance') {
-    createSubsequenceMap(document.getElementById('inp').value, 
-                         parseInt(document.getElementById('sub-val').value), 
+    createSubsequenceMap(document.getElementById('inp').value,
+                         parseInt(document.getElementById('sub-val').value),
                          parseInt(document.getElementById('cnt').value)).then(finish);
   }
   else {
