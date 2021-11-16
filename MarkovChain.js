@@ -118,7 +118,7 @@ function getNextWord(childsMap) {
   return arrayKeys[0];
 }
 
-// go throug each subsequance from the start to finish and try to predict the next character
+// go throug each subsequence from the start to finish and try to predict the next character
 async function createSubsequenceMap(text, counter = 5, maxChars = 10000) {
   let mapWithNextElements = {};
   if(text.length <= counter) {
@@ -173,7 +173,7 @@ function removeDropDowns() {
 function changeOption() {
   const selectedValue = document.getElementById('by').value;
   removeDropDowns();
-  if(selectedValue === 'subsequance') {
+  if(selectedValue === 'subsequence') {
     const parentDOM = document.getElementById('input-zone')
     parentDOM.appendChild(createElementFromHTML(`
       <div>
@@ -205,7 +205,7 @@ function changeOption() {
 
 function process() {
   loadingAquire();
-  if(document.getElementById('by').value == 'subsequance') {
+  if(document.getElementById('by').value == 'subsequence') {
     createSubsequenceMap(document.getElementById('inp').value,
                          parseInt(document.getElementById('sub-val').value),
                          parseInt(document.getElementById('cnt').value)).then(finish);
